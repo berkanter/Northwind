@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Title  -->
+	<title>Northwind - @ViewBag.Title</title>
+
+	<!-- Favicon  -->
+	<link rel="icon" href="/Frontend/img/core-img/favicon.ico">
+
+	<!-- Core Style CSS -->
+	<link rel="stylesheet" href="/Frontend/css/core-style.css">
+
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" href="/Frontend/css/responsive.css">
+
+	@RenderSection("css", false)
+</head>
+
+<body>
+	<div id="wrapper">
+		@if (TempData["Message"] != null)
+		{
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="alert alert-primary alert-dismissible fade show text-center" role="alert">
+							@TempData["Message"]
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		}
+
+		<!-- ****** Header Area Start ****** -->
+		<header class="header_area">
+			<!-- Top Header Area Start -->
+			<div class="top_header_area">
+				<div class="container h-100">
+					<div class="row h-100 align-items-center justify-content-end">
+						<div class="col-12 col-lg-7">
+							<div class="top_single_area d-flex align-items-center">
+								<!-- Cart & Menu Area -->
+								@await Component.InvokeAsync("CartSummary")
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<!-- Top Header Area End -->
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<nav class="navbar navbar-expand-lg ">
+
+							<div class="collapse navbar-collapse collapse justify-content-center">
+								<ul class="navbar-nav animated">
+									<li class="nav-item active"><a class="nav-link" href="/Home/Index">Home</a></li>
+									<li class="nav-item"><a class="nav-link" href="/Product/Index">Shop</a></li>
+									<li class="nav-item"><a class="nav-link" href="/Cart/List">Cart</a></li>
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" href="#" id="karlDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
+										<div class="dropdown-menu" aria-labelledby="karlDropdown">
+											@await Component.InvokeAsync("CategoryList")
+										</div>
+									</li>
+									@if (Context.User.Identity.IsAuthenticated)
+									{
+										<li class="nav-item"><a href="/Account/Logout" class="nav-link">Logout</a></li>
+									}
+									else
+									{
+										<li class="nav-item"><a href="/Account/Login" class="nav-link">Login</a></li>
+									}
+								</ul>
+							</div>
+						</nav>
+					</div>
+				</div>
+			</div>
+
+		</header>
+		<!-- ****** Header Area End ****** -->
+
+		@RenderBody()
+
+		<hr />
+		<!-- ****** Footer Area Start ****** -->
+		<footer>
+			<div class="container">
+				<div class="row">
+					<!-- Single Footer Area Start -->
+					<div class="col-12 col-md-6 col-lg-6">
+						<div class="footer-logo">
+							<p class="font-bold">Northwind</p>
+						</div>
+						<div class="copywrite_text">
+							<p>
+								Copyright &copy;
+								<script>document.write(new Date().getFullYear());</script> All rights reserved
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- ****** Footer Area End ****** -->
+	</div>
+	<!-- /.wrapper end -->
+	<!-- jQuery -->
+	<script src="/Frontend/js/jquery/jquery-2.2.4.min.js"></script>
+	<!-- Popper js -->
+	<script src="/Frontend/js/popper.min.js"></script>
+	<!-- Bootstrap js -->
+	<script src="/Frontend/js/bootstrap.min.js"></script>
+	<!-- Plugins js -->
+	<script src="/Frontend/js/plugins.js"></script>
+	<!-- Active js -->
+	<script src="/Frontend/js/active.js"></script>
+
+	@RenderSection("js", false)
+</body>
+</html>

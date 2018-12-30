@@ -1,0 +1,6 @@
+﻿@model Northwind.MvcWebUI.Models.CategoryListViewModel
+
+@foreach (var category in Model.Categories)
+{
+	<a href="/product/index?category=@category.CategoryId" class="dropdown-item">@category.CategoryName</a>
+}

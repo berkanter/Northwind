@@ -1,0 +1,25 @@
+﻿@model Northwind.MvcWebUI.Models.CartSummaryViewModel
+
+<div class="header-cart-menu d-flex align-items-center m6-auto">
+	<!-- Cart Area -->
+	<div class="cart">
+		<a href="#" id="header-cart-btn" target="_blank"><span class="cart_quantity">@Model.Cart.CartLines.Count</span> <i class="ti-bag"></i> Your Bag &#8378;@Model.Cart.Total.ToString("#.##")</a>
+		<!-- Cart List Area Start -->
+		<ul class="cart-list">
+			@foreach (var item in Model.Cart.CartLines)
+			{
+				<li>
+					<div class="cart-item-desc">
+						<h6><a href="#">@item.Product.ProductName</a></h6>
+						<p>@item.Quantity x - <span class="price">&#8378;@item.Product.UnitPrice.ToString("#.##")</span></p>
+					</div>
+				</li>
+			}
+
+			<li class="total">
+				<span class="pull-right">Total: &#8378;@Model.Cart.Total.ToString("#.##")</span>
+				<a href="/Cart/List" class="btn btn-sm btn-cart">Cart</a>
+			</li>
+		</ul>
+	</div>
+</div>

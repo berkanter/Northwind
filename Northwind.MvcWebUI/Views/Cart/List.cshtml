@@ -1,0 +1,62 @@
+﻿@model Northwind.MvcWebUI.Models.CartListViewModel
+
+@{
+	ViewData["Title"] = "Home";
+}
+
+<div class="cart_area section_padding_100 clearfix">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="cart-table clearfix">
+					<table class="table table-responsive">
+						<thead>
+							<tr>
+								<th>Product</th>
+								<th>Price</th>
+								<th>Quantity</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model.Cart.CartLines)
+							{
+								<tr>
+									<td class="cart_product_img d-flex align-items-center">
+										<h6>@item.Product.ProductName</h6>
+									</td>
+									<td class="price"><span>&#8378;@item.Product.UnitPrice.ToString("#.##")</span></td>
+									<td class="qty">@item.Quantity</td>
+									<td><a href="/Cart/Remove/@item.Product.ProductId" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span> remove from cart</a></td>
+								</tr>
+							}
+
+						</tbody>
+					</table>
+				</div>
+
+				<div class="cart-footer d-flex mt-30">
+					<div class="back-to-shop w-50">
+						<a href="/Product/Index">Continue shooping</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12 col-lg-4">
+				<div class="cart-total-area mt-70">
+					<div class="cart-page-heading">
+						<h5>Cart total</h5>
+					</div>
+
+					<ul class="cart-total-chart">
+						<li><span><strong>Total</strong></span> <span><strong>&#8378;@Model.Cart.Total.ToString("#.##")</strong></span></li>
+					</ul>
+					<a href="/Cart/Complete" class="btn karl-checkout-btn">Go To Checkout</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

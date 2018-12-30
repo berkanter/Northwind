@@ -1,0 +1,53 @@
+﻿@model List<Northwind.Entities.Concrete.User>
+
+@{
+	ViewData["Title"] = "Users";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="app-title">
+	<div>
+		<h1><i class="fa fa-users"></i> User List</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="tile">
+			<div class="tile-body">
+				<table class="table table-hover table-bordered" id="sampleTable">
+					<thead>
+						<tr>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Username</th>
+							<th>Role</th>
+							<th>Operations</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td>@item.FirstName</td>
+								<td>@item.LastName</td>
+								<td>@item.UserName</td>
+								<td>@item.Role</td>
+								<td>
+									<a href="/Admin/UserDelete/@item.UserId" class="btn btn-xs btn-danger">
+										<i class="fa fa-lg fa-trash"></i>
+									</a>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section js {
+	<script type="text/javascript" src="js/plugins/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
+	<script type="text/javascript">$('#sampleTable').DataTable();</script>
+}

@@ -1,0 +1,6 @@
+﻿@model Northwind.MvcWebUI.Models.UserDetailsViewModel
+
+@if (!String.IsNullOrEmpty(Model.UserName))
+{
+	<p>@Model.UserName.ToUpper()</p>
+}

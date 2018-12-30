@@ -1,0 +1,66 @@
+﻿@model Northwind.MvcWebUI.Models.ProductListViewModel
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<section class="shop_grid_area section_padding_100">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 col-lg-3">
+				<div class="shop_sidebar_area">
+
+					<div class="widget catagory mb-50">
+						<!--  Side Nav  -->
+						<div class="nav-side-menu">
+							<h6 class="mb-0">Catagories</h6>
+							<div class="menu-list">
+								<ul id="menu-content2" class="menu-content collapse out">
+									<!-- Single Item -->
+									<li data-toggle="collapse">
+										@foreach (var item in Model.Categories)
+										{
+											<a href="/Product/Index?page=1&category=@item.CategoryId">@item.CategoryName</a>
+										}
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-12 col-md-8 col-lg-9">
+				<div class="shop_grid_product_area">
+					<div class="row">
+
+						@foreach (var item in Model.Products)
+						{
+							<div class="col-12 col-sm-6 col-lg-4 single_gallery_item">
+								
+								<!-- Product Description -->
+								<div class="product-description">
+									<h4 class="product-price">&#8378;@item.UnitPrice.ToString("#.##")</h4>
+									<p>@item.ProductName</p>
+									<!-- Add to Cart -->
+									<a href="/Cart/AddToCart/@item.ProductId" class="add-to-cart-btn">Add To Cart</a>
+								</div>
+							</div>
+						}
+
+
+					</div>
+				</div>
+
+				<product-list-pager 
+					current-category="@Model.CurrentCategory"
+					current-page="@Model.CurrentPage"
+					page-count="@Model.PageCount"
+					page-size="@Model.PageSize">
+				</product-list-pager>
+
+			</div>
+		</div>
+	</div>
+</section>
